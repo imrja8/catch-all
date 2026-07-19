@@ -56,10 +56,8 @@
         const contentDiv = document.getElementById('content');
 
         if (host.includes('.dev')) {
-            // Testing environment void
             contentDiv.innerHTML = '<p class="subtitle">This is empty space, currently no service here.<br>Either services not started properly or you are on wrong entry..</p>';
         } else {
-            // Production environment void
             contentDiv.innerHTML = `
                 <p class="subtitle">You are lost in void, go back to home</p>
                 <a href="https://tegota.com" class="btn">Go back</a>
