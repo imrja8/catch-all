@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  custom-404:
+    image: nginx:alpine
+    volumes:
+      - ./index.html:/usr/share/nginx/html/index.html:ro
+    networks:
+      - coolify
+    labels:
+      - "traefik.enable=true"
+      # Catch all routes with the lowest priority so any specific app wins
+      - "traefik.http.routers.catchall.rule=HostRegexp(`{catchall:.*}`)"
+      - "traefik.http.routers.catchall.priority=1"
+      - "traefik.http.routers.catchall.entrypoints=http,https"
+      - "traefik.http.routers.catchall.tls=true"
+      - "traefik.http.services.catchall.loadbalancer.server.port=80"
+
+networks:
+  coolify:
+    external: true
