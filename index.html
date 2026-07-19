@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 &bull; You're Lost</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M24 9.60059H19.2002V19.2002H14.4004V24H9.59961V19.2002H11.999L14.3994 16.7998H14.4004V9.59961H16.7998L19.1992 7.2002H19.2002V4.7998H24V9.60059ZM9.59961 19.2002H4.7998V9.59961H9.59961V19.2002ZM19.2002 4.7998H7.2002L4.80078 7.2002H4.7998V9.59961H0V4.7998H4.7998V0H19.2002V4.7998Z' fill='%23F5346B'/%3E%3C/svg%3E" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #0a0a0f;
+            color: #e8e8ed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 24px;
+            backdrop-filter: blur(20px);
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        h1 { font-size: 3rem; font-weight: 600; margin-bottom: 20px; }
+        h1 span { color: #F5346B; }
+        .subtitle { font-size: 1.1rem; color: #a1a1aa; line-height: 1.6; margin-bottom: 30px; }
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center; 
+            padding: 12px 24px; background: rgba(255,255,255,0.05); 
+            color: #e8e8ed; text-decoration: none; border-radius: 100px; 
+            font-weight: 500; font-size: 14px; border: 1px solid rgba(255,255,255,0.1); 
+            transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .btn:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>You're <span>Lost</span></h1>
+        <div id="content"></div>
+    </div>
+
+    <script>
+        const host = window.location.hostname;
+        const contentDiv = document.getElementById('content');
+
+        if (host.includes('.dev')) {
+            // Testing environment void
+            contentDiv.innerHTML = '<p class="subtitle">This is empty space, currently no service here.<br>Either services not started properly or you are on wrong entry..</p>';
+        } else {
+            // Production environment void
+            contentDiv.innerHTML = `
+                <p class="subtitle">You are lost in void, go back to home</p>
+                <a href="https://tegota.com" class="btn">Go back</a>
+            `;
+        }
+    </script>
+</body>
+</html>
